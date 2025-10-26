@@ -128,7 +128,7 @@ criterion = nn.BCELoss()
 criterion.cuda()
 
 # data
-data = np.load("train_cGAN_ASV2.npy", allow_pickle=True)
+data = np.load("train_cGAN_ASV.npy", allow_pickle=True)
 time_series_data, conditions = np.split(data, (data.shape[1] - 1,), axis=1)
 
 dataset = TimeSeriesDataset(torch.tensor(time_series_data, dtype=torch.float32).cuda(),
@@ -200,5 +200,5 @@ for epoch in range(num_epochs):
         print(f'Epoch [{epoch + 1}/{num_epochs}] - d_loss: {d_loss:.4f}, g_loss: {g_loss:.4f}')
 
     if (epoch) % save_epoch == 0:
-        torch.save(generator.state_dict(), "models/G_ts_ASV2_linear-%d.model" % (epoch))
+        torch.save(generator.state_dict(), "models/G_ts_ASV_linear-%d.model" % (epoch))
         # torch.save(discriminator.state_dict(), "models/D_ts_ASV_linear-%d.model" % (epoch))

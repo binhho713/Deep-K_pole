@@ -12,10 +12,14 @@ def main():
 
     # build commands
     cmd_asv = f"python DMD_ASV.py --k_query={k_query} --model_ver={model_ver} --epoch={epoch} --is_training={training}"
+    cmd_asv2 = f"python DMD_ASV2.py --k_query={k_query} --model_ver={model_ver} --epoch={epoch} --is_training={training}"
     cmd_psl = f"python DMD_psl.py --k_query={k_query} --model_ver={model_ver} --epoch={epoch} --is_training={training}"
 
     print(f"🚀 Running: {cmd_asv}")
     subprocess.run(cmd_asv, shell=True, check=True)
+
+    print(f"🚀 Running: {cmd_asv2}")
+    subprocess.run(cmd_asv2, shell=True, check=True)
 
     print(f"🚀 Running: {cmd_psl}")
     subprocess.run(cmd_psl, shell=True, check=True)

@@ -221,7 +221,7 @@ else:
 # ----------
 
     # --- load & normalize ---
-    inTs = np.load('base_ts_150_ASV2.npy', allow_pickle=True)
+    inTs = np.load('base_ts_150_ASV.npy', allow_pickle=True)
     inTs = statm.zscore(inTs, axis=1)  # per-series z-score
     samples, length = inTs.shape
     eval_label = np.arange(samples)

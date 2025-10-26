@@ -170,10 +170,6 @@ for epoch in range(num_epochs):
         fake_time_series = generator(noise, condition)
         d_loss_fake = criterion(discriminator(fake_time_series.detach(), condition), fake_labels)
 
-        # gradient_penalty = compute_gradient_penalty(discriminator, real_time_series, fake_time_series.detach(),
-        #                                             condition)
-        # d_loss = d_loss_real + d_loss_fake + gradient_penalty
-
         d_loss = (d_loss_real + d_loss_fake) / 2
         d_loss.backward()
 
@@ -191,5 +187,4 @@ for epoch in range(num_epochs):
         print(f'Epoch [{epoch + 1}/{num_epochs}] - d_loss: {d_loss:.4f}, g_loss: {g_loss:.4f}')
 
     if (epoch) % save_epoch == 0:
-        torch.save(generator.state_dict(), "models/G_ts_psl_linear_2-%d.model" % (epoch))
-        # torch.save(discriminator.state_dict(), "models/D_ts_psl_linear_2-%d.model" % (epoch))
+        torch.save(generator.state_dict(), "models/G_ts_psl_linear-%d.model" % (epoch))
