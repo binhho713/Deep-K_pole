@@ -1,0 +1,12 @@
+ASV:
+  batch_size: 128
+  latent_dim: 100
+  n_classes: 150
+  ts_size: 325
+  nums: 150
+psl:
+  batch_size: 128
+  latent_dim: 100
+  n_classes: 171
+  ts_size: 108
+  nums: 171
