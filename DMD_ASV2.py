@@ -73,7 +73,7 @@ generator = Generator()
 if torch.cuda.is_available():
     print("use cuda")
     generator = generator.cuda()
-generator.load_state_dict(torch.load(f"models/G_ts_ASV_linear-{model_ver}.model"))
+generator.load_state_dict(torch.load(f"models/G_ts_ASV2_linear-{model_ver}.model"))
 generator.eval()
 
 # Init seperator and predictor
@@ -105,7 +105,7 @@ def setup_logger(name, log_file, level=logging.INFO):
 
 
 # Load data
-trainData = np.load("train_cGAN_ASV.npy", allow_pickle=True)
+trainData = np.load("train_cGAN_ASV2.npy", allow_pickle=True)
 time_series, _ = np.split(trainData, (trainData.shape[1]-1,), axis=1)
 arrInx = np.arange(0, time_series.shape[0], 1)
 np.random.shuffle(arrInx)
@@ -120,14 +120,14 @@ def save_model(model, path):
     torch.save(model.state_dict(), path)
 
 
-pred_path = f"./models/pred_DMD_ASV_{k_query}_"
-sep_path = f"./models/sep_DMD_ASV_{k_query}_"
+pred_path = f"./models/pred_DMD_ASV2_{k_query}_"
+sep_path = f"./models/sep_DMD_ASV2_{k_query}_"
 
 check_freq = 100
 save_freq = 20
 lr = 0.00001
 
-logger = setup_logger(f'DMD_ASV_train_{k_query}_logger', f'DMD_ASV_training_{k_query}.log')
+logger = setup_logger(f'DMD_ASV2_train_{k_query}_logger', f'DMD_ASV2_training_{k_query}.log')
 
 # ----------
 # Training
@@ -221,7 +221,7 @@ else:
 # ----------
 
     # --- load & normalize ---
-    inTs = np.load('base_ts_150_ASV.npy', allow_pickle=True)
+    inTs = np.load('base_ts_150_ASV2.npy', allow_pickle=True)
     inTs = statm.zscore(inTs, axis=1)  # per-series z-score
     samples, length = inTs.shape
     eval_label = np.arange(samples)
@@ -229,7 +229,7 @@ else:
     # --- model ---
     pred0 = encoder_ASV.resnet18(predictor=True)
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    state = torch.load(f"models/pred_DMD_ASV_{k_query}_{model_ver}.model",
+    state = torch.load(f"models/pred_DMD_ASV2_{k_query}_{model_ver}.model",
                        map_location=device)
     pred0.load_state_dict(state)
     pred0.eval().to(device)
@@ -304,4 +304,4 @@ else:
         'Multipoles': mlps,
         'Strength': sts,
     })
-    df.to_excel(f'results/test_DMD_ASV_{k_pole}_pole_top{top}.xlsx', index=False)
+    df.to_excel(f'results/test_DMD_ASV2_{k_pole}_pole_top{top}.xlsx', index=False)
