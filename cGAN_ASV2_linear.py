@@ -128,7 +128,7 @@ criterion = nn.BCELoss()
 criterion.cuda()
 
 # data
-data = np.load("train_cGAN_ASV2.npy", allow_pickle=True)
+data = np.load("train_data/train_cGAN_ASV2.npy", allow_pickle=True)
 time_series_data, conditions = np.split(data, (data.shape[1] - 1,), axis=1)
 
 dataset = TimeSeriesDataset(torch.tensor(time_series_data, dtype=torch.float32).cuda(),

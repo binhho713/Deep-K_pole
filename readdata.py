@@ -458,7 +458,4 @@ def k_pole_of_ts(datapath, tag, index, k, threshold):
 
     elapsed_time = (time.time() - start_time) / 60
     print(f'Finished finding {k}_pole after {elapsed_time:.2f} minutes')
-	
-k_pole_of_ts('base_ts_171_psl.npy', 'psl', 157, 5, 0.55)
-k_pole_of_ts('base_ts_150_ASV.npy', 'ASV', 118, 5, 0.55)
-k_pole_of_ts('base_ts_150_ASV2.npy', 'ASV2', 74, 5, 0.55)
+

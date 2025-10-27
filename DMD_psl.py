@@ -100,7 +100,7 @@ def setup_logger(name, log_file, level=logging.INFO):
 
     return logger
 
-trainData = np.load("train_cGAN_psl.npy", allow_pickle=True)
+trainData = np.load("train_data/train_cGAN_psl.npy", allow_pickle=True)
 time_series, _ = np.split(trainData, (trainData.shape[1]-1,), axis=1)
 arrInx = np.arange(0, time_series.shape[0], 1)
 np.random.shuffle(arrInx)
