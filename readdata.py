@@ -8,6 +8,7 @@ import logging
 import time
 import itertools
 from itertools import combinations
+import os
 
 def setup_logger(name, log_file, level=logging.INFO):
     """Function to set up a logger with a file and console handler."""
@@ -459,3 +460,10 @@ def k_pole_of_ts(datapath, tag, index, k, threshold):
     elapsed_time = (time.time() - start_time) / 60
     print(f'Finished finding {k}_pole after {elapsed_time:.2f} minutes')
 
+# psl = np.load('base_ts_171_psl.npy', allow_pickle=True)
+# asv = np.load('base_ts_150_ASV.npy', allow_pickle=True)
+# asv2 = np.load('base_ts_150_ASV2.npy', allow_pickle=True)
+# os.makedirs("train_data", exist_ok=True)
+# generate_train_ts_v2(psl, 'train_data/train_cGAN_psl.npy')
+# generate_train_ts_v2(asv, 'train_data/train_cGAN_ASV.npy')
+# generate_train_ts_v2(asv2, 'train_data/train_cGAN_ASV2.npy')
